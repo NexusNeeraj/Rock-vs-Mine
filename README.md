@@ -7,7 +7,6 @@ The project includes:
 - Data preprocessing
 - Model training using Logistic Regression
 - Evaluation of the model’s performance
-- A simple web app for predictions using **Streamlit**.
 
 ## Requirements
 
@@ -16,13 +15,10 @@ To run the project, you need to install the following libraries:
 
 - **pandas**: For data manipulation
 - **scikit-learn**: For machine learning algorithms and evaluation metrics
-- **joblib**: For saving and loading models
-- **streamlit**: For building the web application
-- **pyngrok**: For exposing the web app over the internet
 
 You can install these libraries using pip:
 ```bash
-pip install pandas scikit-learn joblib streamlit pyngrok
+pip install pandas scikit-learn
 ```
 
 ## Project Setup
@@ -33,44 +29,9 @@ pip install pandas scikit-learn joblib streamlit pyngrok
    - We use **Logistic Regression** for binary classification to predict whether the object is a rock or a mine.
    - The trained model is saved as `rock_vs_mine_model.pkl`.
 
-3. **Create the Streamlit Web App**:
-   - The app allows users to upload sonar data in CSV format and get a prediction of "Rock" or "Mine".
-   - The model is loaded from the saved `.pkl` file, and predictions are made based on the uploaded data.
 
-4. **Run the Web App**:
-   - The app is exposed through **ngrok** so you can access it via a public URL.
 
-### Running the App
 
-After setting up your project and training the model, run the following code to start the Streamlit app in Colab:
-
-```python
-from pyngrok import ngrok
-
-# Run the app in the background
-!streamlit run app.py &
-
-# Expose the app using ngrok
-url = ngrok.connect(port='8501')
-print(f"App is live at: {url}")
-```
-
-Once the app is running, you can open the public URL in your browser and start using it.
-
-## Web App Usage
-
-- **Step 1**: Upload a sonar dataset in CSV format.
-- **Step 2**: Press the "Predict" button.
-- **Step 3**: Get predictions on whether the object is a "Rock" or "Mine".
-
-## File Structure
-
-```
-- app.py                  # Streamlit web app code
-- rock_vs_mine_model.pkl  # Trained model file
-- requirements.txt        # List of required Python libraries
-- README.md               # Project documentation
-```
 
 ## Model Evaluation
 
@@ -85,8 +46,7 @@ from sklearn.metrics import accuracy_score
 import pandas as pd
 
 # Load the dataset
-url = "https://archive.ics.uci.edu/ml/machine-learning-databases/undocumented/sonar/sonar.all-data"
-df = pd.read_csv(url, header=None)
+df = pd.read_csv(/content/sonardata.csv, header=None)
 
 # Split features and labels
 X = df.iloc[:, :-1]
